@@ -8,11 +8,21 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
 </head>
-<body style="background-color:lightgray; "  width: 500px;
-  padding-left:25px;
-  padding-right: 50px;
-  padding-top: 100px;
-  padding-bottom: 25px;">
+    <style>
+        /* CSS for text justification */
+        .justified-text {
+            text-align: justify;
+        }
+
+        /* CSS for adjusting text size, width, and length */
+        .large-text {
+            font-size: 24px; /* Adjust the font size as needed */
+            width: 80%; /* Adjust the width as a percentage of the parent container */
+            max-width: 800px; /* Set a maximum width to limit text length */
+            margin: 0 auto; /* Center the text horizontally */
+        }
+    </style>
+	
 	<h1> Control Barrier Functions
 		<h2>CMSC818B : Mini-Project 1 </h2>
   <h3>Team members: Sara Honarvar, Suraj Raval </h3> 
@@ -24,15 +34,17 @@
 
 </body>
 <h2> Formal Definitions</h2>
-<p>Formal Definitions
-	The concept of safety in control systems was first introduced through the concept of set invariance proposed by Nagumo as follows:
-	Consider a dynamical system of $$\dot{x} = f(x),$$ with $x \in \mathbb{R}^n$, Assuming that $$C =\{ x \in \mathbb{R}^n: h(x) \geq 0 \}$$ and $$frac{ \par{h}}{ \par{x} }
-	\neq 0$$
-	
-	</p>
+<p>The concept of safety in control systems was first introduced through the concept of set invariance proposed by Nagumo as follows:<\p>
+<p>Consider a dynamical system of \(\dot{x} = f(x)\), with \(x \in \mathbb{R}^n\). Assuming that \(C =\{ x \in \mathbb{R}^n: h(x) \geq 0 \}\) and \(\frac{\partial h}{\partial x} \neq 0\), where \(h : \mathbb{R}^n \rightarrow \mathbb{R}\) is a smooth function <cite>[Smoothness - Wikipedia]</cite>.</p>
+
 	<h2> Certificate Functions</h2>
 	<h2> Control Barrier Functions</h2>
 	<p>In control theory, control barrier functions (CBFs) provide formal guarantees that a dynamic system will remain within a defined safe operating space. By constraining a barrier function to be nonnegative, CBFs ensure a system avoids entering undesirable or unsafe states during operation. For example, CBFs could keep a robot from getting too close to the edge of a table, or keep a vehicle from getting near the shoulder of a road. They provide a way to mathematically box a system into making only safe decisions. </p>
 
 	<h2> Graph Control Barrier Functions</h2>
+	    <h2>References</h2>
+    <ol>
+        <li><a href="https://en.wikipedia.org/wiki/Smoothness">Smoothness - Wikipedia</a></li>
+        <!-- Add more references here -->
+    </ol>
 </html>
