@@ -27,7 +27,7 @@
 		<h2>CMSC818B : Mini-Project 1 </h2>
   <h3>Team members: Sara Honarvar, Suraj Raval </h3> 
 <hr> 		
- <h3>Summary:</h3>
+ <h2>Summary:</h2>
 <p> Autonomous systems encounter significant challenges when operating in uncertain and unstructured dynamic environments. To safely navigate such environments with unpredictable obstacles, robust decision-making capabilities are essential. In control theory, various certificate functions, such as Lyapunov functions, the barrier function, and the contraction metric, play critical roles in ensuring system stability and safety. These certificate functions have been proposed to prove certain desired properties for the system.</p>
 <p>Lyapunov functions, in nonlinear control for instance, certify system stability around a fixed point, which is an equilibrium point representing the desired state that you want your system to stay at. The barrier function is a generalized Lyapunov function that extends this concept to an invariant set. Invariant denotes something that doesn't change. In simpler terms, if the system starts within this set, it remains within it. When this set happens to represent the safety zone, it ensures safety, particularly in the context of safe navigation. Additionally, there is the contraction metric, which can be viewed as a differentiable version of Lyapunov. It not only certifies contraction towards an equilibrium point but also ensures that the system remains close to the reference path, even in dynamic scenarios, provided the path is feasible. This blog primarily focuses on control barrier functions CBFs.</p>
 
@@ -36,16 +36,18 @@
 <h2> Formal Definitions</h2>
 <p>The concept of safety in control systems was first introduced through the concept of set invariance proposed by Nagumo as follows [1]:</p>
 <p>Consider a dynamical system of \(\dot{x} = f(x)\), with \(x \in \mathbb{R}^n\). </p>
-	<p>Assuming that \(C =\{ x \in \mathbb{R}^n: h(x) \geq 0 \}\) and \(\frac{\partial h}{\partial x} \neq 0\), \(\forall x\), such that \(h(x) = 0\) where \(h : \mathbb{R}^n \rightarrow \mathbb{R}\) is a <cite><a href="https://en.wikipedia.org/wiki/Smoothness">smooth function</a></cite>.</p>
+	<p>Let the safe set \(c\) to be \(C =\{ x \in \mathbb{R}^n: h(x) \geq 0 \}\). Assuming that \(\frac{\partial h}{\partial x} \neq 0\), \(\forall x\), such that \(h(x) = 0\) where \(h : \mathbb{R}^n \rightarrow \mathbb{R}\) is a <cite><a href="https://en.wikipedia.org/wiki/Smoothness">smooth function</a></cite>.</p>
 	<p>Then according to Nagumo's theorem, the necessary and sufficient condition for set invariance is given based on derivative of \(h\) on the boundary of \(C\): \[C \text{ is invariant} \iff \dot{h}(x) \geq 0 \text{ for all } x \in \partial C\]
-</p>
-	
-
-	<h2> Certificate Functions</h2>
-	<h2> Control Barrier Functions</h2>
+This definition lays foundation for all barrier functions and has been rediscovered in different forms. </p>
+	<h3> Barrier Certificates</h3>
+	<p>Barrier Certificates are formal methods used to ensure the safety of nonlinear and hybrid systems, often connected to the principles of Nagumo's theorem. The term "barrier" originates from the field of optimization, where it denotes elements added to cost functions to prevent undesirable regions. 
+		In the context of barrier certificates, assuming the function \( B: \mathbb{R}^n \rightarrow \mathbb{R}\), where \( \begin{cases}B(x) \leq 0 & \forall x \in C_0\\ B(x) < 0 & \forall x \in C_u\end{cases}\),
+	where \(C_u\) is the unsafe set, and \(C_0\) is a set of initial conditions. Then \(B\) is a barrier certificate if 
+	\[ \dot{B}(x)\leq 0  \gives C is invariant.\]</p>
+	<h3> Control Barrier Functions</h3>
 	<p>In control theory, control barrier functions (CBFs) provide formal guarantees that a dynamic system will remain within a defined safe operating space. By constraining a barrier function to be nonnegative, CBFs ensure a system avoids entering undesirable or unsafe states during operation. For example, CBFs could keep a robot from getting too close to the edge of a table, or keep a vehicle from getting near the shoulder of a road. They provide a way to mathematically box a system into making only safe decisions. </p>
 
-	<h2> Graph Control Barrier Functions</h2>
+	<h3> Graph Control Barrier Functions</h3>
 	    <h2>References</h2>
     <ol>
 	<li><a href="https://arxiv.org/abs/1903.11199">Control Barrier Functions: Theory and Applications</a></li>
