@@ -18,10 +18,21 @@
   <h3>Team members: Sara Honarvar, Suraj Raval </h3> 
 <hr> 		
  <h3>Summary:</h3>
-<p>In control theory, control barrier functions (CBFs) provide formal guarantees that a dynamic system will remain within a defined safe operating space. By constraining a barrier function to be nonnegative, CBFs ensure a system avoids entering undesirable or unsafe states during operation. For example, CBFs could keep a robot from getting too close to the edge of a table, or keep a vehicle from getting near the shoulder of a road. They provide a way to mathematically box a system into making only safe decisions. </p>
+<p> Autonomous systems encounter significant challenges when operating in uncertain and unstructured dynamic environments. To safely navigate such environments with unpredictable obstacles, robust decision-making capabilities are essential. In control theory, various certificate functions, such as Lyapunov functions, the barrier function, and the contraction metric, play critical roles in ensuring system stability and safety. These certificate functions have been proposed to prove certain desired properties for the system.</p>
+<p>Lyapunov functions, in nonlinear control for instance, certify system stability around a fixed point, which is an equilibrium point representing the desired state that you want your system to stay at. The barrier function is a generalized Lyapunov function that extends this concept to an invariant set. Invariant denotes something that doesn't change. In simpler terms, if the system starts within this set, it remains within it. When this set happens to represent the safety zone, it ensures safety, particularly in the context of safe navigation. Additionally, there is the contraction metric, which can be viewed as a differentiable version of Lyapunov. It not only certifies contraction towards an equilibrium point but also ensures that the system remains close to the reference path, even in dynamic scenarios, provided the path is feasible. This blog primarily focuses on control barrier functions CBFs.</p>
+
 
 </body>
+<h2> Formal Definitions</h2>
+<p>Formal Definitions
+	The concept of safety in control systems was first introduced through the concept of set invariance proposed by Nagumo as follows:
+	Consider a dynamical system of $$\dot{x}=f(x),$$ with $ x\in\mathbb{R}^n $, Assuming that $$C =\{x\in \mathbb{R}^n: h(x)\geq 0\}$$ and $$frac{\par h}{\par x}
+	\neq 0$$
+	
+	</p>
 	<h2> Certificate Functions</h2>
 	<h2> Control Barrier Functions</h2>
+	<p>In control theory, control barrier functions (CBFs) provide formal guarantees that a dynamic system will remain within a defined safe operating space. By constraining a barrier function to be nonnegative, CBFs ensure a system avoids entering undesirable or unsafe states during operation. For example, CBFs could keep a robot from getting too close to the edge of a table, or keep a vehicle from getting near the shoulder of a road. They provide a way to mathematically box a system into making only safe decisions. </p>
+
 	<h2> Graph Control Barrier Functions</h2>
 </html>
