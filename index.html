@@ -35,15 +35,20 @@
 </body>
 <h2> Formal Definitions</h2>
 <p>The concept of safety in control systems was first introduced through the concept of set invariance proposed by Nagumo as follows [1]:</p>
-<p>Consider a dynamical system of \(\dot{x} = f(x)\), with \(x \in \mathbb{R}^n\). </p>
+<p>Consider an open dynamical system (i.e., system without input) of form \(\dot{x} = f(x)\), with \(x \in \mathbb{R}^n\). </p>
 	<p>Let the safe set \(c\) to be \(C =\{ x \in \mathbb{R}^n: h(x) \geq 0 \}\). Assuming that \(\frac{\partial h}{\partial x} \neq 0\), \(\forall x\), such that \(h(x) = 0\) where \(h : \mathbb{R}^n \rightarrow \mathbb{R}\) is a <cite><a href="https://en.wikipedia.org/wiki/Smoothness">smooth function</a></cite>.</p>
 	<p>Then according to Nagumo's theorem, the necessary and sufficient condition for set invariance is given based on derivative of \(h\) on the boundary of \(C\): \[C \text{ is invariant} \iff \dot{h}(x) \geq 0 \text{ for all } x \in \partial C\]
 This definition lays foundation for all barrier functions and has been rediscovered in different forms. </p>
 	<h3> Barrier Certificates</h3>
-	<p>Barrier Certificates are formal methods used to ensure the safety of nonlinear and hybrid systems, often connected to the principles of Nagumo's theorem. The term "barrier" originates from the field of optimization, where it denotes elements added to cost functions to prevent undesirable regions. 
-		In the context of barrier certificates, assuming the function \( B: \mathbb{R}^n \rightarrow \mathbb{R}\), where \( \begin{cases}B(x) \leq 0 & \forall x \in C_0\\ B(x) < 0 & \forall x \in C_u\end{cases}\),
-	where \(C_u\) is the unsafe set, and \(C_0\) is a set of initial conditions. Then \(B\) is a barrier certificate if 
-	\[ \dot{B}(x)\leq 0  \gives C is invariant.\]</p>
+ <p>Barrier Certificates are formal methods used to ensure the safety of nonlinear and hybrid systems, often connected to the principles of Nagumo's theorem. The term "barrier" originates from the field of optimization, where it denotes elements added to cost functions to prevent undesirable regions.</p>    
+    <p>To construct the conditions for barrier certificates, again consider a dynamical system \(\dot{x} = f(x)\) </p>
+		<p>assuming the function \( B: \mathbb{R}^n \rightarrow \mathbb{R}\), where \( \begin{cases}B(x) \leq 0 & \forall x \in C_0\\ B(x) < 0 & \forall x \in C_u\end{cases}\),</p>  
+    <p>\(C_u\) is the unsafe set, and \(C_0\) is a set of initial conditions. Then \(B\) is a barrier certificate if</p> 
+    <p>\[ L_fB(x)\leq 0  \Rightarrow C \text{ is invariant}.\]</p>
+	\(L_fB(x) = \frac{\partial {B}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(B(x)\) along \(f\). Besides, the above result can reduce to Nagumo's theorem by setting the safe set to be the complement of the unsafe set (i.e., \(C=C_u^c\) and \(B(x)=-h(x)\).</p>
+	<h3>Barrier Lyapunov function<h3>
+		<p> Barrier Certificates ensure safety over the boundary of a set, while Barrier Lyapunov functions, \(B\) extend safety guarantees over the entire set. To ensure safety, \(B) must be positive definite at all points within the set. By enforcing \(\dot{B}(x)\leq 0\) over the set \(C\), Barrier Lyapunov functions guarantee the invariance of set \(C\), and thus saftey across the entire region. However, the condition is conservative, as it enforce the invariance of every level set.  </p>
+		
 	<h3> Control Barrier Functions</h3>
 	<p>In control theory, control barrier functions (CBFs) provide formal guarantees that a dynamic system will remain within a defined safe operating space. By constraining a barrier function to be nonnegative, CBFs ensure a system avoids entering undesirable or unsafe states during operation. For example, CBFs could keep a robot from getting too close to the edge of a table, or keep a vehicle from getting near the shoulder of a road. They provide a way to mathematically box a system into making only safe decisions. </p>
 
