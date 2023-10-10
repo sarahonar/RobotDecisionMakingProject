@@ -69,7 +69,7 @@
 		</p>
 	<h2>How To Construct CBFs? </h2>
 	<p> Constructing CBFs can be a challenging task. Traditional methods involve hand-crafted design which often requires expertise in control theory and a deep understanding of the specific system being controlled. Fixed-degree polynomials and exponential functions are among traditional methods for desigining CBFs, however, fine tuning the parameters of these functions may not be trivial. Recently, convex optimization problems through sum of squares have been used to construct CBFs for systems with polynomial dynamics. However, these method may not scale well for high dimensional systems such as the multi agent systems. Plus, they are limited to polynomial systems. To address these limitations, machine learning techniques such as neural network, reinforcement learning, imitation learning and inverse reinforcement learning techniques have been deployed to approximate CBFs. </p>
-	<p> For example, \(h\) and \(u\) can be derived using NN using the following Loss:
+	<p> For example, \(h\) and \(u\) can be represented through NN by jointly optimizing for  Loss:
 	\[inf_{h,u}\left(sup_{x \in C}\left(max\left(0,h(x)\right)\right)+(sup_{x \in C_u}\left(max\left(0,-h(x)\right)\right)+(sup_{x}\left(max\left(0,L_fh(x)+L_gh(x)u]+\alpha (h(x))\right)\right)\right)\]</p>	
 	<h3> Graph Control Barrier Functions</h3>
 	    <h2>References</h2>
