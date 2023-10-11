@@ -73,14 +73,18 @@
 	A GCBF for a graph is defined as \[\begin{cases}h(e_i,v_i)> 0 & x\in C_i \\ h(e_i,v_i) < 0 & x\in C_u \\ sup_{u_i}[\dot{h}(e_i,v_i)+\alpha (h(e_i,v_i))]\geq 0  & x\in C_i\end{cases}.\]
 	Again \(\alpha\) is a class \(\kappa\) function. 
 	<h2>How To Construct CBFs? </h2>
-	<p> Constructing CBFs can be a challenging task. Traditional methods involve hand-crafted design which often requires expertise in control theory and a deep understanding of the specific system being controlled. Fixed-degree polynomials and exponential functions are among traditional methods for desigining CBFs, however, fine tuning the parameters of these functions may not be trivial. Recently, convex optimization problems through sum of squares have been used to construct CBFs for systems with polynomial dynamics. However, these method may not scale well for high dimensional systems such as the multi agent systems. Plus, they are limited to polynomial systems. To address these limitations, machine learning techniques such as neural network (NN), reinforcement learning (RL), or learning from demonstration techniques have been deployed to approximate CBFs. </p>
+	<p> Constructing CBFs can be a challenging task. Traditional methods involve hand-crafted design which often requires expertise in control theory and a deep understanding of the specific system being controlled. Fixed-degree polynomials and exponential functions are among traditional methods for desigining CBFs, however, fine tuning the parameters of these functions may not be trivial. To overcome this, CBF synthesis can be formulated as an optimization problem over a space of continuously differentiable functions. For example, recently, convex optimization problems through sum of squares have been used to construct CBFs for systems with polynomial dynamics. However, these method may not scale well for high dimensional and nonlinear systems such as multi agent systems. Additionally, they are limited to polynomial systems and become nonconvex when jointly optimizing for the controller and CBF. To improve scalability and flexibility to more general system dynamics, machine learning techniques such as neural networks (NN), reinforcement learning (RL), and learning from demonstration have been deployed to approximate CBFs. These data-driven methods can overcome the limitations of analytic CBF design. </p>
+	<p> CBFs learned through NN are called neural certificates. To satisfy the continuous differentiable assumption on \(h\), the CBFs are learned using continuously differentiable activation functions such as tanh, softplus for continous-time systems and ReLU for discrete-time case.</p>
+		<p> To learn the certificate, \(h\), and controller, \(u\), simultaneously, two separate networks could be used, one for learning the control policy and the pther to learn the certificate.</p>
+ </p>
 	<p> For example, \(h\) and \(u\) can be derived by NN by assuming the following loss function:
 	\[inf_{h,u}\left(sup_{x \in C}\left(max\left(0,h(x)\right)\right)+(sup_{x \in C_u}\left(max\left(0,-h(x)\right)\right)+(sup_{x}\left(max\left(0,[L_fh(x)+L_gh(x)u+\alpha (h(x))]\right)\right)\right).\]</p>	
-		It has been recently shown that GCBF can be derived using graph neural network.
+	It has been recently shown that GCBF can be derived using graph neural network.
 	</p>
 		<h2>Applications</h2>
+		
 		<h3> Single-Agent Systems </h3>
-		CBFs have been widely used for 
+		
 		<h3> Multi-Agent Systems </h3>
 		<h2> Open Research Questions </h2>
 		
