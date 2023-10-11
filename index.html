@@ -64,14 +64,15 @@
 	<h3> Control Barrier Functions (CBF)</h3>
 		<p>In control theory, control barrier functions (CBFs) provide formal guarantees that a dynamic system will remain within a defined safe operating space. By constraining a barrier function to be nonnegative, CBFs ensure a system avoids entering undesirable or unsafe states during operation. For example, CBFs could keep a robot from getting too close to the edge of a table, or keep a vehicle from getting near the shoulder of a road. They provide a way to mathematically box a system into making only safe decisions. </p>
 		<p> Building upon the barrier certificates definition and inspired by the CLFs, CBFs can be defined. A control barrier function \(h: \mathbb{R}^n \rightarrow \mathbb{R}\) is a continuously differentiable function that satisfies the following conditions
-		\[\begin{cases}h(x)\leq 0 & x\in C \\ h(x) > 0 & x\in C_u \\ inf_{u \in U}[L_fh(x)+L_gh(x)u]+\alpha (h(x)) leq 0\end{cases}\]
+		\[\begin{cases}h(x)\leq 0 & x\in C \\ h(x) > 0 & x\in C_u \\ inf_{u \in U}[L_fh(x)+L_gh(x)u]+\alpha (h(x)) \leq 0\end{cases}\]
 		Note that \(C\) and \(C_u\) are the safe set and unsafe set, respectively and \(\alpha\) is a class \(\kappa\) function. The barrier is at \(h(x)=0\), and the first two conditions act like a classifier, distinguishing between safe and unsafe regions. The last condition sets CBFs apart from barrier certificates and aligns with the CLF, by ensuring that the Lie-derivative of \(h\) is negative. Additionally, \(\alpha\) intuitively enforces that if the goal is too close to the barrier and the robot is far from the goal, the robot can approach it. However, if the robot gets too close to the barrier, it prompts the robot to stop.
 		</p>
 	<h2>How To Construct CBFs? </h2>
 	<p> Constructing CBFs can be a challenging task. Traditional methods involve hand-crafted design which often requires expertise in control theory and a deep understanding of the specific system being controlled. Fixed-degree polynomials and exponential functions are among traditional methods for desigining CBFs, however, fine tuning the parameters of these functions may not be trivial. Recently, convex optimization problems through sum of squares have been used to construct CBFs for systems with polynomial dynamics. However, these method may not scale well for high dimensional systems such as the multi agent systems. Plus, they are limited to polynomial systems. To address these limitations, machine learning techniques such as neural network (NN), reinforcement learning (RL), or learning from demonstration techniques have been deployed to approximate CBFs. </p>
 	<p> For example, \(h\) and \(u\) can be derived by NN by assuming the following loss function:
 	\[inf_{h,u}\left(sup_{x \in C}\left(max\left(0,h(x)\right)\right)+(sup_{x \in C_u}\left(max\left(0,-h(x)\right)\right)+(sup_{x}\left(max\left(0,[L_fh(x)+L_gh(x)u]+\alpha (h(x))\right)\right)\right)\]</p>	
-	<h3> Graph Control Barrier Functions</h3>
+	<h3> Graph Control Barrier Functions (GCBF)</h3>
+	
 	    <h2>References</h2>
     <ol>
 	<li><a href="https://arxiv.org/abs/1903.11199">Control Barrier Functions: Theory and Applications</a></li>
