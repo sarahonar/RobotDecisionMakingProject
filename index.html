@@ -22,21 +22,17 @@
             margin: 0 auto; /* Center the text horizontally */
         }
     </style>
-	<SPAN STYLE="background-image: url(https://images.deepai.org/converted-papers/2004.03315/Figs/fig3.png">
-
 	<h1> Control Barrier Functions
 		<h2>CMSC818B : Mini-Project 1 </h2>
   <h3>Team members: Sara Honarvar, Suraj Raval </h3> 
-		</SPAN>
 <hr> 		
  <h2>Summary</h2>
 <p> Autonomous systems encounter significant challenges when operating in uncertain and unstructured dynamic environments. To safely navigate through such environments with unpredictable obstacles, robust decision-making capabilities are essential. In control theory, various certificate functions, such as Lyapunov functions, the barrier function, and the contraction metric, play critical roles in ensuring system stability and safety. These certificate functions have been proposed to prove certain desirable properties for the system.</p>
-<p>Lyapunov functions, in nonlinear control for instance, certify system stability around a fixed point, which is an equilibrium point representing the desired state that you want your system to stay at. The barrier function is a generalized Lyapunov function that extends this concept to an invariant set, ensuring the safety of the system. Invariant denotes something that doesn't change. In simpler terms, if the system starts within this set, it remains within it. When this set happens to represent the safety zone, it ensures safety, particularly in the context of safe navigation. Additionally, there is the contraction metric, which can be viewed as a differentiable version of Lyapunov. It not only certifies contraction towards an equilibrium point but also ensures that the system remains close to the reference path, even in dynamic scenarios, provided the path is feasible. This blog primarily focuses on control barrier functions CBFs.</p>
+<p>Lyapunov functions, in nonlinear control for instance, certify system stability around a fixed point, which is an equilibrium point representing the desired state that you want your system to stay at. The barrier function is a generalized Lyapunov function that extends this concept to an invariant set, ensuring the safety of the system. Invariant denotes something that doesn't change. In simpler terms, if the system starts within this set, it remains within it. When this set happens to represent the safety zone, it ensures safety, particularly in the context of safe navigation. Additionally, there is the contraction metric, which can be viewed as a differentiable version of Lyapunov. It not only certifies contraction towards an equilibrium point but also ensures that the system remains close to the reference path, even in dynamic scenarios, provided the path is feasible. This blog primarily focuses on control barrier functions CBFs, as they are powerful tools for promoting correct behaviors, providing safety guarantees, and improving robot capabilities in critical applications. </p>
 <h4>Remark:</h4>
 <p> The term stability refers to guiding a system to a point or within a defined set, while safety revolves around ensuring that the system remains within the boundaries of an invariant set, meaning it does not exit a safe region.</p>
 
 
-</body>
 <h2> Formal Definitions</h2>
 <p> The concept of safety in control systems was first introduced through the concept of set invariance proposed by Nagumo as follows [1]:</p>
 <p>Consider a nonlinear, closed dynamical system (i.e., system without input) of form \(\dot{x} = f(x)\), with \(x \in \mathbb{R}^n\). </p>
@@ -78,13 +74,22 @@
 	<p> Constructing CBFs can be a challenging task. Traditional methods involve hand-crafted design which often requires expertise in control theory and a deep understanding of the specific system being controlled. Fixed-degree polynomials and exponential functions are among traditional methods for desigining CBFs, however, fine tuning the parameters of these functions may not be trivial. To overcome this, CBF synthesis can be formulated as an optimization problem over a space of continuously differentiable functions. For example, recently, convex optimization problems through sum of squares have been used to construct CBFs for systems with polynomial dynamics. However, these method may not scale well for high dimensional and nonlinear systems such as multi agent systems. Additionally, they are limited to polynomial systems and become nonconvex when jointly optimizing for the controller and CBF. To improve scalability and flexibility to more general system dynamics, machine learning techniques such as neural networks (NN), reinforcement learning (RL), and learning from demonstration have been deployed to approximate CBFs. These data-driven methods can overcome the limitations of analytic CBF design. </p>
 	<p> CBFs learned through NN are called neural certificates. To satisfy the continuously differentiable assumption on \(h\), the CBFs are learned using continuously differentiable activation functions such as tanh, softplus for continous-time systems and ReLU for discrete-time case.</p>
 		<p> To learn the certificate, \(h\), and controller, \(u\), simultaneously, two separate networks could be used, one for learning the control policy and the pther to learn the certificate.</p>
- </p>
 	<p> For example, \(h\) and \(u\) can be derived by NN by assuming the following loss function:
 	\[inf_{h,u}\left(sup_{x \in C}\left(max\left(0,h(x)\right)\right)+(sup_{x \in C_u}\left(max\left(0,-h(x)\right)\right)+(sup_{x}\left(max\left(0,[L_fh(x)+L_gh(x)u+\alpha (h(x))]\right)\right)\right).\]</p>	
 	It has been recently shown that GCBF can be derived using graph neural network.
-	</p>
-		<!--<h2>Applications</h2>-->
-		
+		<h2>Applications</h2>
+		Control barrier functions (CBFs) are invaluable tools for enforcing safety constraints in dynamical systems like robots. With the rise of deep learning in controls and robotics, CBFs have become even more important by providing formal guarantees that learned controllers will behave safely and correctly.
+Key applications of CBFs in robotics include:
+<h4>Safe navigation for legged robots</h4>
+<p>CBFs enforce constraints on foot placement and center of mass to prevent falls during locomotion.</p>
+<h4>Collision-free motion planning</h4>
+<p>CBFs formally verify trajectories avoid collisions with static and dynamic obstacles, for example enabling safe robot navigation in crowded areas.</p>
+<h4>Trusted autonomous driving</h4>
+<p>For self-driving cars, CBFs prove maneuvers like cruise control, lane keeping, and lane changes are collision-free.</p>
+<h4>Safe autonomous racing</h4>
+		<p>By combining CBF safety constraints with performance objectives, aggressive racing maneuvers can be achieved while guaranteeing collision avoidance.</p>
+<h4></h4>Multi-agent coordination </h4>
+	<p>CBFs can provably coordinate swarms of robots like drones to achieve goals without inter-agent collisions.</p>
 		<!--<h3> Single-Agent Systems </h3>-->
 		
 		<!--<h3> Multi-Agent Systems </h3>-->
@@ -97,11 +102,11 @@
 		<h2>References</h2>
     <ol>
 	<li><a href="https://arxiv.org/abs/1903.11199">Control Barrier Functions: Theory and Applications</a></li>
-        <li><a href="https://en.wikipedia.org/wiki/Smoothness">Smoothness - Wikipedia</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Smoothness">Smoothness - Wikipedia</a></li>
 	<li><a href="https://en.wikipedia.org/wiki/Class_kappa_function">Class_kappa_function- Wikipedia</a></li>
 	<li><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10015199">Safe Control With Learned Certificates: A Survey of Neural Lyapunov, Barrier, and Contraction Methods for Robotics and Control</a></li>
-        <li><a href="https://ieeexplore.ieee.org/abstract/document/9303785">Learning Control Barrier Functions from Expert Demonstrations</a></li>
-	<li><a href="https://openreview.net/pdf?id=VscdYkKgwdH"> Neural Graph Control Barrier Functions Guided Distributed Collision-avoidance Multi-agent Control</li>
+    <li><a href="https://ieeexplore.ieee.org/abstract/document/9303785">Learning Control Barrier Functions from Expert Demonstrations</a></li>
+	<li><a href="https://openreview.net/forum?id=VscdYkKgwdH"> Neural Graph Control Barrier Functions Guided Distributed Collision-avoidance Multi-agent Control</a></li>
 	<!-- Add more references here -->
     </ol>
 </html>
