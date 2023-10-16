@@ -26,19 +26,6 @@ margin-left: 80px; */
   margin-left: 80px;
   background-color: powderblue;
 }
-	    figure {
-/* border: 1px #cccccc solid;  */
-  padding: 4px;
-  margin: auto; 
-}
-
-figcaption {
-/*   background-color: black;
-  color: white; */
-  font-style: italic;
-  padding: 2px;
-  text-align: center;
-}
 	    h1 {text-align: center;}
 	     h2 {text-align: center;}
 /* 	     h3 {text-align: center;} */
@@ -60,7 +47,7 @@ style="text-align:center;"
 
  <h2 >Summary</h2>
 <p align="justify"> Autonomous systems encounter significant challenges when operating in uncertain and unstructured dynamic environments. To safely navigate through such environments with unpredictable obstacles, robust decision-making capabilities are essential. In control theory, various certificate functions, such as Lyapunov functions, the barrier function, and the contraction metric, play critical roles in ensuring system stability, safety, and robustness to disturbances.</p>
-<p align="justify"> In nonlinear control, Lyapunov functions certify system stability around a fixed point, which is an equilibrium point representing the desired system state. The barrier function is a generalized Lyapunov function that extends this concept to an invariant set, ensuring the safety of the system. Invariant denotes something that doesn't change. In simpler terms, if the system starts within this set, it remains within it. When this set happens to represent the safety zone, it ensures safety, particularly in the context of safe navigation. Additionally, there is the contraction metric, which can be viewed as a differentiable version of Lyapunov. It not only certifies contraction towards an equilibrium point but also ensures that the system remains close to the reference path, even in dynamic scenarios, provided the path is feasible. This blog primarily focuses on control barrier functions (CBFs), as they are powerful tools for promoting correct behaviors, providing safety guarantees, and improving robot capabilities in critical applications. We start by introducing different certificate functions for ensuring safety and stability of dynamical systems and then focus on control barrier functions and their applications in robot decision making. </p>
+<p align="justify">Lyapunov functions, even in nonlinear control for instance, certify system stability around a fixed point, which is an equilibrium point representing the desired system state. The barrier function is a generalized Lyapunov function that extends this concept to an invariant set, ensuring the safety of the system. Invariant denotes something that doesn't change. In simpler terms, if the system starts within this set, it remains within it. When this set happens to represent the safety zone, it ensures safety, particularly in the context of safe navigation. Additionally, there is the contraction metric, which can be viewed as a differentiable version of Lyapunov. It not only certifies contraction towards an equilibrium point but also ensures that the system remains close to the reference path, even in dynamic scenarios, provided the path is feasible. This blog primarily focuses on control barrier functions CBFs, as they are powerful tools for promoting correct behaviors, providing safety guarantees, and improving robot capabilities in critical applications. We start by introducing different certificate functions for ensuring safety and stability of dynamical systems and then focus on control barrier functions and their applications in robot decision making. </p>
 	<h4>Remark:</h4>
 <p align="justify"> The term stability refers to guiding a system to a point or within a defined set, while safety revolves around ensuring that the system remains within the boundaries of an invariant set, meaning it does not exit a safe region.</p>
 
@@ -70,32 +57,26 @@ style="text-align:center;"
 Consider a nonlinear, closed dynamical system (i.e., system without input) of form \(\dot{x} = f(x)\), with \(x \in \mathbb{R}^n\). 
 	Let the safe set be \(C =\{ x \in \mathbb{R}^n: h(x) \geq 0 \}\). Assuming that \(\frac{\partial h}{\partial x} \neq 0\), \(\forall x\), such that \(h(x) = 0\) where \(h : \mathbb{R}^n \rightarrow \mathbb{R}\) is a <cite><a href="https://en.wikipedia.org/wiki/Smoothness">smooth function</a></cite> (i.e., continously differentiable).
 	Then according to Nagumo's theorem, the necessary and sufficient condition for set invariance is given based on the derivative of \(h\) on the boundary of \(C\): \[C \text{ is invariant} \iff L_fh(x) \geq 0 \text{ for all } x \in \partial C\]
-\(L_fh(x) = \frac{\partial {h}}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(h(x)\) along \(f(x)\) and \(partial C =\{ x \in \mathbb{R}^n: h(x) = 0 \}\). If the above condition is met, then set \(C\) becomes a forward invariant set. The above definition lays foundation for all barrier functions and has been rediscovered in different forms. </p>
- <figure>
-	 <center>
-	<img src="invariance_set.png" alt="Nagumo's Invariance Principle" style="width:40%">
-  <figcaption> Nagumo's Invariance Principle. The region inside the green circle is the safe set \(C\).</figcaption>
-	 </center>
-</figure>
+\(L_fh(x) = \frac{\partial {h}}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(h(x)\) along \(f(x)\). The above definition lays foundation for all barrier functions and has been rediscovered in different forms. </p>
 	<h3> Barrier Certificates</h3>
  <p align="justify"> Barrier Certificates are formal methods used to ensure the safety of nonlinear and hybrid systems, often connected to the principles of Nagumo's theorem. The term "barrier" originates from the field of optimization, where it denotes elements added to cost functions to prevent undesirable regions. 
  In the context of barrier certificates, assuming the function \( B: \mathbb{R}^n \rightarrow \mathbb{R}\), where \( \begin{cases}B(x) \leq 0 & \forall x \in C_0\\ B(x) > 0 & \forall x \in C_u\end{cases}\),
 	where \(C_u\) is the unsafe set, and \(C_0\) is a set of initial conditions. Then \(B\) is a barrier certificate if 
 	\[ L_fB(x)\leq 0  \rightarrow C \text{ is invariant}.\]</p>
-	<p align="justify"> \(L_fB(x) = \frac{\partial {B}}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(B(x)\) along \(f(x)\). Besides, the above result can be reduced to Nagumo's theorem by setting the safe set to be the complement of the unsafe set (i.e., \(C=C_u^c\)) and \(B(x)=-h(x)\).</p>
+	<p> \(L_fB(x) = \frac{\partial {B}}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(B(x)\) along \(f(x)\). Besides, the above result can be reduced to Nagumo's theorem by setting the safe set to be the complement of the unsafe set (i.e., \(C=C_u^c\)) and \(B(x)=-h(x)\).</p>
 	<!--<h3>Barrier Lyapunov function</h3>
 		<p align="justify"> Barrier Certificates ensure safety over the boundary of a set, while Barrier Lyapunov functions, \(B\) extend safety guarantees over the entire set. To ensure safety, \(B\) must be positive definite at all points within the set. By enforcing \(\dot{B}(x)\leq 0\) over the set \(C\), Barrier Lyapunov functions guarantee the invariance of set \(C\), and thus saftey across the entire region. However, the condition is conservative, as it enforce the invariance of every level set.  </p> -->
-	<p align="justify"> To expand the results to nonlinear open dynamical systems known as nonlinear control affine systems such as
-		\(\dot{x}=f(x)+g(x)u\), where \(u \in U \subset \mathbb{R}^m\) is the set of admissible inputs (controls), the concept of CBF was defined. CBF enables us to transition from the notion of invariant sets to controlled invariant sets, which are sets that can be maintained as invariant by designing a proper controller. The concept of CBF is inspired by control Lyapunov functions (CLF). So before we delve into the mathematical formalization of CBF, let's first introduce the foundation of CLF. </p>
+	In order to extend the results to nonlinear open dynamical systems or nonlinear input affine systems, e.g.,
+		\(\dot{x}=f(x)+g(x)u\) for \(u \in U \subset \mathbb{R}^m\) is the set of admissible inputs, the concept of CBF was defined. In this case, the formulation leads from invariat sets to controlled invariant sets, i.e., the sets that can be made invariant by designing a proper controller. The concept of CBF is inspired by control Lyapunov functions (CLF). So before mathematically formalizing CBF, we start by introducing CLF. 
 	<h3> Control Lyapunov function (CLF) </h3>
-	<p align="justify">In control theory, a primary objective, in addition to ensuring safety, is to design controllers that uphold the stability of a system. This concept of stability relates to a controller's ability to navigate a system from a non-zero state to a region near the origin and maintain it there. Control Lyapunov Functions (CLFs) are instrumental in assuring the stability of the system.
+	<p align="justify">In control theory, Control Lyapunov Functions (CLFs) play a critical role in ensuring the stability of the system.
 	Consider the following nonlinear control affine system \[\begin{equation}\dot{x}=f(x)+g(x)u\end{equation},\] 
 		where \(u\) belongs to the admissible input set \(U \subset \mathbb{R}^m\), and \(f\) and \(g\) are locally Lipschitz functions. The state variable \(x\) resides in the domain \(D \subset \mathbb{R}^n\). 
 			Suppose that the control objective for this system is to derive \(x(t)\rightarrow 0\), effectively stabilizing the system to \(x^*(t)=0\). Lyapunov's theory asserts that this objective can be achieved if there exists 
 			a positive definite function \(V\) that satisfies the following constraint:
 			\[\begin{equation}{\label{system dynamics}} inf_{u \in U}[L_fV(x)+L_gV(x)u]\leq -\gamma (V(x))\end{equation},\]
 			where \(\gamma\) is a class <a href="https://en.wikipedia.org/wiki/Class_kappa_function">\(\kappa\) function</a> (i.e., \(\gamma(0)=0\) and 
-				is strictly increasing). The function \(V\) is called the Control Lyapunov function and the existence of it guarantees stability of the system. The above constraint guarantees that the time derivative of \(V\) along system trajectories is always non-positive. So, any Lipschitz continuous feedback controller \(u(x) \in K_{clf}(x):=\{u \in U[L_fV(x)+L_gV(x)u]\leq -\gamma (V(x))\}\) asymptotically steers the system towards \(x^*(t)=0\).</p>
+				is strictly increasing). The function \(V\) is called the Control Lyapunov function (CLF). The above constraint guarantees that the time derivative of \(V\) along system trajectories is always non-positive. So, any Lipschitz continuous feedback controller \(u(x) \in K_{clf}(x):=\{u \in U[L_fV(x)+L_gV(x)u]\leq -\gamma (V(x))\}\) asymptotically steers the system towards \(x^*(t)=0\).</p>
 		
 	<h3> Control Barrier Functions (CBF)</h3>
 		<p align="justify">In control theory, control barrier functions (CBFs) provide formal guarantees that a dynamical system will remain within a defined safe operating space. By constraining a barrier function to be nonnegative, CBFs ensure a system avoids entering undesirable or unsafe states during operation. For example, CBFs could keep a robot from getting too close to the edge of a table, or keep a vehicle from getting near the shoulder of a road. They provide a way to mathematically box a system into making only safe decisions. </p>
@@ -105,10 +86,10 @@ Consider a nonlinear, closed dynamical system (i.e., system without input) of fo
 		</p>
 	<h3> Graph Control Barrier Functions (GCBF)</h3>
 	<p align="justify">In the context of multi-agent systems (MAS), a variant of barrier certificates has been recently introduced. Consider the problem of designing a distributed control law that drives \(N\) agents, \(V_a=\{1,\dots,N\}\) to their goal locations while avoiding collisions. 
-	Consider the agent's dynamics is given by \(\dot{x}=f_i(x)\), where \(x_i \in \mathbb{R}^n\) and \(u \in \mathbb{R}^m\), and \(f_i\) is locally Lipschitz continuous. The structure of system could be represented as a graph, \(G=(V,E)\), where \(V\) is the node set and \(E = \{(i, j)\}\) is the set of edges representing the flow of information from node j to i. For example, an edge could exist between two nodes if they are within certain distance of each other.
+	Consider the agent's dynamics is given by \(\dot{x}=f_i(x)\), where \(x_i \in \mathbb{R}^n\) and \(u \in \mathbb{R}^m\), and \(f_i\) is locally Lipschitz continuous. The structure of system could be represented as a graph, \(G=(V,E\), with \(V\) is the node set and \(E = \{(i, j)\}\) is the set of edges representing the flow of information from node j to i.
 	A GCBF for a graph is defined as \[\begin{cases}h(e_i,v_i)> 0 & x\in C_i \\ h(e_i,v_i) < 0 & x\in C_u \\ sup_{u_i}[\dot{h}(e_i,v_i)+\alpha (h(e_i,v_i))]\geq 0  & x\in C_i\end{cases}.\]
-	Again \(\alpha\) is a class \(\kappa\) function. Similar as before, the existence of GCBF ensures the safety of the multi-agents systems. In this case, \(h(e_i,v_i)=0\) again denotes the barrier separating the safe region from non-safe regions. The first two conditions demonstrate the safety regions. The last condition, however, plays a pivotal role in ensuring that the multi-agent system remains within the safety boundaries. While the term \(\dot{h}(e_i,v_i) \geq 0\) in the last condition does indeed prioritize safety, it tends to be overly cautious, always mandating the system to maintain a distance from the barriers. In practice, there may be scenarios where some of the agents need to operate in closer proximity to the barrier. In such cases, the second term comes into play. Specifically, the term \(\alpha (h(e_i,v_i))\geq 0 \) implies that \(h(e_i,v_i)\) only needs to be greater than zero at the barrier, thus offering a more relaxed condition.
-	<h2> Beyond Classical Methods for Constructing CBFs </h2>
+	Again \(\alpha\) is a class \(\kappa\) function. 
+	<h2> Beyond Classical Methods for CBFs </h2>
 	<p align="justify"> Constructing CBFs can be a challenging task. Traditional methods involve hand-crafted design which often requires expertise in control theory and a deep understanding of the specific system being controlled. Simple parametric forms like polynomials and exponentials are tuned to satisfy the CBF conditions for a given system. However, this can become intractable for complex, high-dimensional systems like teams of autonomous vehicles. The lack of scalability and flexibility with classical techniques has motivated development of data-driven methods. For example, CBF synthesis can be formulated as an optimization problem over a space of continuously differentiable functions. Recently, convex optimization problems through sum of squares have been used to construct CBFs for systems with polynomial dynamics. However, these method may not scale well for high dimensional and nonlinear systems such as multi agent systems. Additionally, they are limited to polynomial systems and become nonconvex when jointly optimizing for the controller and CBF. To improve scalability and flexibility to more general system dynamics, machine learning techniques such as neural networks (NN), reinforcement learning (RL), and learning from demonstration have been deployed to approximate CBFs. These data-driven methods can overcome the limitations of analytic CBF design. </p>
 	<p align="justify"> CBFs learned through NN are called neural certificates. To satisfy the continuously differentiable assumption on \(h\), the CBFs are learned using continuously differentiable activation functions such as tanh, softplus for continous-time systems and ReLU for discrete-time case.</p>
 		<p align="justify"> To learn the certificate, \(h\), and controller, \(u\), simultaneously, two separate networks could be used, one for learning the control policy and the other to learn the certificate.</p>
@@ -140,7 +121,8 @@ By combining CBF safety constraints with performance objectives, aggressive raci
 		<p align="justify"> For the work that involves implementation on real robots in the real world, in addition to the constraints imposed by CLF and CBF, generally there is an input constraint which is necessary in order to make sure the input is admissible. In some works on deriving CLF and CBF, this input constraint is not taken into account, and hence the algorithm might not be deployable in the real world due to the physical input limitations of the system. There is potential in combining CLF and CBF constraints with the QP input constraints in order to provide practical uses of the results. </p>
 		<p align="justify"> When robots are operating in the real-world, there will be uncertainties induced due to phenomenon such as an actuator failure, or an attack from an adversary. Can we learn certificates which can potentially offer robustness against such events? </p>
 
-<center><img src="example2.gif" alt="mobile robots vision using CBFs" /></center> 
+<center><img src="example2.gif" alt="mobile robots vision using CBFs" />
+<figcaption>Mobile robots sanitizing a hospital during COVID (vision using CBFs)</figcaption></center> 
 		
 		<h2>References</h2>
     <ol>
@@ -155,11 +137,8 @@ By combining CBF safety constraints with performance objectives, aggressive raci
 	<li><a href="https://openreview.net/forum?id=VscdYkKgwdH"> Zhang, S., Garg, K., & Fan, C. (2023, August). Neural Graph Control Barrier Functions Guided Distributed Collision-avoidance Multi-agent Control. In 7th Annual Conference on Robot Learning.n</a></li>
 	<li><a href=""> Zeng, J. (2022). Challenges of Control Barrier Functions: Optimization, Control, Planning, and Navigation. University of California, Berkeley. </a></li>
 	    <li><a href="https://www.youtube.com/watch?v=X0r4MKc3wbo"> Neural certificates in large-scale autonomy design </li>
-	    <li><a href="https://bolundai0216.github.io/assets/images/control_theory/An%20Introduction%20to%20Control%20Barrier%20Functions.pdf">An Introduction to Control
-Barrier Function </li>
 	    <!-- Add more references here -->
     </ol>
-
+</html>
 </body>
 </div>
-</html>
