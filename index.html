@@ -105,7 +105,7 @@ Consider a nonlinear, closed dynamical system (i.e., system without input) of fo
 		</p>
 	<h3> Graph Control Barrier Functions (GCBF)</h3>
 	<p align="justify">In the context of multi-agent systems (MAS), a variant of barrier certificates has been recently introduced. Consider the problem of designing a distributed control law that drives \(N\) agents, \(V_a=\{1,\dots,N\}\) to their goal locations while avoiding collisions. 
-	Consider the agent's dynamics is given by \(\dot{x}=f_i(x)\), where \(x_i \in \mathbb{R}^n\) and \(u \in \mathbb{R}^m\), and \(f_i\) is locally Lipschitz continuous. The structure of system could be represented as a graph, \(G=(V,E)\), where \(V\) is the node set and \(E = \{(i, j)\}\) is the set of edges representing the flow of information from node j to i.
+	Consider the agent's dynamics is given by \(\dot{x}=f_i(x)\), where \(x_i \in \mathbb{R}^n\) and \(u \in \mathbb{R}^m\), and \(f_i\) is locally Lipschitz continuous. The structure of system could be represented as a graph, \(G=(V,E)\), where \(V\) is the node set and \(E = \{(i, j)\}\) is the set of edges representing the flow of information from node j to i. For example, an edge could exist between two nodes if they are within certain distance of each other.
 	A GCBF for a graph is defined as \[\begin{cases}h(e_i,v_i)> 0 & x\in C_i \\ h(e_i,v_i) < 0 & x\in C_u \\ sup_{u_i}[\dot{h}(e_i,v_i)+\alpha (h(e_i,v_i))]\geq 0  & x\in C_i\end{cases}.\]
 	Again \(\alpha\) is a class \(\kappa\) function. Similar as before, the existence of GCBF ensures the safety of the multi-agents systems.
 	<h2> Beyond Classical Methods for Constructing CBFs </h2>
