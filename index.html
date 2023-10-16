@@ -9,15 +9,21 @@
 
 </head>
     <style>
+	    p {
+  text-indent: 50px;
+  line-height: 1.5;
+}
 style="text-align:justified;"
     </style>
 
+	
 
 	<h1> Control Barrier Functions
 		<h2>CMSC818B : Mini-Project 1 </h2>
   <h3>Team members: Sara Honarvar, Suraj Raval </h3> 
 <hr> 		
 <hr> 
+<body>
  <h2>Summary</h2>
 <p> Autonomous systems encounter significant challenges when operating in uncertain and unstructured dynamic environments. To safely navigate through such environments with unpredictable obstacles, robust decision-making capabilities are essential. In control theory, various certificate functions, such as Lyapunov functions, the barrier function, and the contraction metric, play critical roles in ensuring system stability and safety. These certificate functions have been proposed to prove certain desirable properties for the system.</p>
 <p>Lyapunov functions, in nonlinear control for instance, certify system stability around a fixed point, which is an equilibrium point representing the desired state that you want your system to stay at. The barrier function is a generalized Lyapunov function that extends this concept to an invariant set, ensuring the safety of the system. Invariant denotes something that doesn't change. In simpler terms, if the system starts within this set, it remains within it. When this set happens to represent the safety zone, it ensures safety, particularly in the context of safe navigation. Additionally, there is the contraction metric, which can be viewed as a differentiable version of Lyapunov. It not only certifies contraction towards an equilibrium point but also ensures that the system remains close to the reference path, even in dynamic scenarios, provided the path is feasible. This blog primarily focuses on control barrier functions CBFs, as they are powerful tools for promoting correct behaviors, providing safety guarantees, and improving robot capabilities in critical applications. </p>
@@ -42,8 +48,8 @@ Consider a nonlinear, closed dynamical system (i.e., system without input) of fo
 	In order to extend the results to nonlinear open dynamical systems or nonlinear input affine systems, e.g.,
 		\(\dot{x}=f(x)+g(x)u\) for \(u \in U \subset \mathbb{R}^m\) is the set of admissible inputs, the concept of CBF was defined. In this case, the formulation leads from invariat sets to controlled invariant sets, i.e., the sets that can be made invariant by designing a proper controller. The concept of CBF is inspired by control Lyapunov functions (CLF). So before mathematically formalizing CBF, we start by introducing CLF. 
 	<h3> Control Lyapunov function (CLF) </h3>
-	<p>In control theory, Control Lyapunov Functions (CLFs) play a critical role in ensuring the stability of the system.</p>
-		<p>Consider the following nonlinear control affine system \[\begin{equation}\dot{x}=f(x)+g(x)u\end{equation},\] 
+	<p>In control theory, Control Lyapunov Functions (CLFs) play a critical role in ensuring the stability of the system.
+	Consider the following nonlinear control affine system \[\begin{equation}\dot{x}=f(x)+g(x)u\end{equation},\] 
 		where \(u\) belongs to the admissible input set \(U \subset \mathbb{R}^m\), and \(f\) and \(g\) are locally Lipschitz functions. The state variable \(x\) resides in the domain \(D \subset \mathbb{R}^n\). 
 			Suppose that the control objective for this system is to derive \(x(t)\rightarrow 0\), effectively stabilizing the system to \(x^*(t)=0\). Lyapunov's theory asserts that this objective can be achieved if there exists 
 			a positive definite function \(V\) that satisfies the following constraint:
@@ -94,7 +100,7 @@ CBFs can provably coordinate swarms of robots like drones to achieve goals witho
 		<p> For the work that involves implementation on real robots in the real world, in addition to the constraints imposed by CLF and CBF, generally there is an input constraint which is necessary in order to make sure the input is admissible. In some works on deriving CLF and CBF, this input constraint is not taken into account, and hence the algorithm might not be deployable in the real world due to the physical input limitations of the system. There is potential in combining CLF and CBF constraints with the QP input constraints in order to provide practical uses of the results. </p>
 		<p> When robots are operating in the real-world, there will be uncertainties induced due to phenomenon such as an actuator failure, or an attack from an adversary. Can we learn certificates which can potentially offer robustness against such events? </p>
 
-<center><img src="example.gif" alt="mobile robots vision using CBFs" /></center> 
+<center><img src="example2.gif" alt="mobile robots vision using CBFs" /></center> 
 		
 		<h2>References</h2>
     <ol>
@@ -112,3 +118,4 @@ CBFs can provably coordinate swarms of robots like drones to achieve goals witho
 	    <!-- Add more references here -->
     </ol>
 </html>
+</body>
