@@ -56,7 +56,7 @@ style="text-align:center;"
   <h3 style="text-align: center">Team members: Sara Honarvar, Suraj Raval </h3> 
 <hr> 		
 <hr> 
-<body style="background-color:white;">
+<body style="background-color:powderblue;">
 
  <h2 >Summary</h2>
 <p align="justify"> Autonomous systems encounter significant challenges when operating in uncertain and unstructured dynamic environments. To safely navigate through such environments with unpredictable obstacles, robust decision-making capabilities are essential. In control theory, various certificate functions, such as Lyapunov functions, the barrier function, and the contraction metric, play critical roles in ensuring system stability, safety, and robustness to disturbances.</p>
@@ -71,11 +71,6 @@ Consider a nonlinear, closed dynamical system (i.e., system without input) of fo
 	Let the safe set be \(C =\{ x \in \mathbb{R}^n: h(x) \geq 0 \}\). Assuming that \(\frac{\partial h}{\partial x} \neq 0\), \(\forall x\), such that \(h(x) = 0\) where \(h : \mathbb{R}^n \rightarrow \mathbb{R}\) is a <cite><a href="https://en.wikipedia.org/wiki/Smoothness">smooth function</a></cite> (i.e., continously differentiable).
 	Then according to Nagumo's theorem, the necessary and sufficient condition for set invariance is given based on the derivative of \(h\) on the boundary of \(C\): \[C \text{ is invariant} \iff L_fh(x) \geq 0 \text{ for all } x \in \partial C\]
 \(L_fh(x) = \frac{\partial {h}}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(h(x)\) along \(f(x)\) and \(partial C =\{ x \in \mathbb{R}^n: h(x) = 0 \}\). If the above condition is met, then set \(C\) becomes a forward invariant set. The above definition lays foundation for all barrier functions and has been rediscovered in different forms. </p>
-<!-- 	<center><img src="invariance_set.png" 
-<!-- 			width="100" height="100" -->
-<!-- 			alt="Nagumo's Invariance Principle" 
-<!-- 			 <figcaption>Nagumo's Invariance Principle. The region inside the green circle is the safe set \(C\).</figcaption>/></center>  --> --> -->
-<figure>
   <img src="invariance_set.png" alt="Nagumo's Invariance Principle" style="width:50%">
   <figcaption>Fig.1 - Nagumo's Invariance Principle. The region inside the green circle is the safe set \(C\).</figcaption>
 </figure>
