@@ -66,13 +66,13 @@ Consider a nonlinear, closed dynamical system (i.e., system without input) of fo
 	<p> \(L_fB(x) = \frac{\partial {B}}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(B(x)\) along \(f(x)\). Besides, the above result can be reduced to Nagumo's theorem by setting the safe set to be the complement of the unsafe set (i.e., \(C=C_u^c\)) and \(B(x)=-h(x)\).</p>
 	<!--<h3>Barrier Lyapunov function</h3>
 		<p> Barrier Certificates ensure safety over the boundary of a set, while Barrier Lyapunov functions, \(B\) extend safety guarantees over the entire set. To ensure safety, \(B\) must be positive definite at all points within the set. By enforcing \(\dot{B}(x)\leq 0\) over the set \(C\), Barrier Lyapunov functions guarantee the invariance of set \(C\), and thus saftey across the entire region. However, the condition is conservative, as it enforce the invariance of every level set.  </p> -->
-	In order to extend the results to nonlinear open dynamical systems or nonlinear input affine systems, e.g.,
-		\(\dot{x}=f(x)+g(x)u\) for \(u \in U \subset \mathbb{R}^m\) is the set of admissible inputs, the concept of CBF was defined. In this case, the formulation leads from invariat sets to controlled invariant sets, i.e., the sets that can be made invariant by designing a proper controller. The concept of CBF is inspired by control Lyapunov functions (CLF). So before mathematically formalizing CBF, we start by introducing CLF. 
+	<p>To expand the results to nonlinear open dynamical systems known as nonlinear control affine systems like
+		\(\dot{x}=f(x)+g(x)u\), where \(u \in U \subset \mathbb{R}^m\) is the set of admissible inputs (controls), the concept of CBF was defined. CBF enables us to transition from the notion of invariant sets to controlled invariant sets, which are sets that can be maintained as invariant by designing a proper controller. The concept of CBF is inspired by control Lyapunov functions (CLF). So, before we delve into the mathematical formalization of CBF, let's first introduce the foundation of CLF. </p>
 	<h3> Control Lyapunov function (CLF) </h3>
-	<p>In control theory, Control Lyapunov Functions (CLFs) play a critical role in ensuring the stability of the system.
-	Consider the following nonlinear control affine system \[\begin{equation}\dot{x}=f(x)+g(x)u\end{equation},\] 
+	<p>In control theory, CLFs play a critical role in ensuring the stability of the system around a fixed equilibrium point. 
+	Imagine a dynamic system with the following nonlinear control affine system \[\begin{equation}\dot{x}=f(x)+g(x)u\end{equation},\] 
 		where \(u\) belongs to the admissible input set \(U \subset \mathbb{R}^m\), and \(f\) and \(g\) are locally Lipschitz functions. The state variable \(x\) resides in the domain \(D \subset \mathbb{R}^n\). 
-			Suppose that the control objective for this system is to derive \(x(t)\rightarrow 0\), effectively stabilizing the system to \(x^*(t)=0\). Lyapunov's theory asserts that this objective can be achieved if there exists 
+			Suppose that the control objective for this system is to derive \(x(t)\rightarrow 0\), effectively stabilizing the system at this equilibrium ( \(x^*(t)=0\)). Lyapunov's theory asserts that this objective can be achieved if there exists 
 			a positive definite function \(V\) that satisfies the following constraint:
 			\[\begin{equation}{\label{system dynamics}} inf_{u \in U}[L_fV(x)+L_gV(x)u]\leq -\gamma (V(x))\end{equation},\]
 			where \(\gamma\) is a class <a href="https://en.wikipedia.org/wiki/Class_kappa_function">\(\kappa\) function</a> (i.e., \(\gamma(0)=0\) and 
