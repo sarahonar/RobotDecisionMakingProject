@@ -59,9 +59,9 @@ Consider a nonlinear, closed dynamical system (i.e., system without input) of fo
 	Then according to Nagumo's theorem, the necessary and sufficient condition for set invariance is given based on the derivative of \(h\) on the boundary of \(C\): \[C \text{ is invariant} \iff L_fh(x) \geq 0 \text{ for all } x \in \partial C\]
 \(L_fh(x) = \frac{\partial {h}}{\partial{x}}(x) f(x)\) is the Lie-derivative of \(h(x)\) along \(f(x)\) and \(partial C =\{ x \in \mathbb{R}^n: h(x) = 0 \}\). If the above condition is met, then set \(C\) becomes a forward invariant set. The above definition lays foundation for all barrier functions and has been rediscovered in different forms. </p>
 	<center><img src="invariance_set.png" 
-			width="100" height="100"
+<!-- 			width="100" height="100" -->
 			alt="Nagumo's Invariance Principle" 
-			 <figcaption>Nagumo's Invariance Principle. The region inside the green circle is the safe set (\C\).</figcaption>/></center> 
+			 <figcaption>Nagumo's Invariance Principle. The region inside the green circle is the safe set \(C\).</figcaption>/></center> 
 
 	<h3> Barrier Certificates</h3>
  <p align="justify"> Barrier Certificates are formal methods used to ensure the safety of nonlinear and hybrid systems, often connected to the principles of Nagumo's theorem. The term "barrier" originates from the field of optimization, where it denotes elements added to cost functions to prevent undesirable regions. 
@@ -74,7 +74,7 @@ Consider a nonlinear, closed dynamical system (i.e., system without input) of fo
 	<p align="justify"> To expand the results to nonlinear open dynamical systems known as nonlinear control affine systems such as
 		\(\dot{x}=f(x)+g(x)u\), where \(u \in U \subset \mathbb{R}^m\) is the set of admissible inputs (controls), the concept of CBF was defined. CBF enables us to transition from the notion of invariant sets to controlled invariant sets, which are sets that can be maintained as invariant by designing a proper controller. The concept of CBF is inspired by control Lyapunov functions (CLF). So before we delve into the mathematical formalization of CBF, let's first introduce the foundation of CLF. </p>
 	<h3> Control Lyapunov function (CLF) </h3>
-	<p align="justify">In control theory, Control Lyapunov Functions (CLFs) play a critical role in ensuring the stability of the system. An important aspect when designing a controller is its capability to guide a system from a non-zero state to a region around the origin and maintain it there.
+	<p align="justify">In control theory, a primary objective, in addition to ensuring safety, is to design controllers that uphold the stability of a system. This concept of stability relates to a controller's ability to navigate a system from a non-zero state to a region near the origin and maintain it there. Control Lyapunov Functions (CLFs) are instrumental in assuring the stability of the system.
 	Consider the following nonlinear control affine system \[\begin{equation}\dot{x}=f(x)+g(x)u\end{equation},\] 
 		where \(u\) belongs to the admissible input set \(U \subset \mathbb{R}^m\), and \(f\) and \(g\) are locally Lipschitz functions. The state variable \(x\) resides in the domain \(D \subset \mathbb{R}^n\). 
 			Suppose that the control objective for this system is to derive \(x(t)\rightarrow 0\), effectively stabilizing the system to \(x^*(t)=0\). Lyapunov's theory asserts that this objective can be achieved if there exists 
